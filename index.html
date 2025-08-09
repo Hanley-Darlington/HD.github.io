@@ -43,7 +43,7 @@ nav#main-nav a.active{color:var(--brand); font-weight:600; border-bottom:2px sol
 .stat-grid{ display:grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap:16px; margin-top:12px; }
 .stat{ background:#fff; border:1px solid #ececec; border-radius:12px; padding:16px; box-shadow:0 1px 0 rgba(0,0,0,.02); transition:transform .18s ease, box-shadow .18s ease; }
 .stat:hover{ transform: translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.06); }
-.stat-label{ font-size:.92em; color:#444; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+.stat-label{ font-size:.92em; color:#444; margin-bottom:8px; display:flex; align-items:center; gap:8px; text-align:left; }
 .stat-label .tiny{ font-size:1.05em; line-height:1; }
 
 /* Unified chip style */
@@ -51,8 +51,10 @@ nav#main-nav a.active{color:var(--brand); font-weight:600; border-bottom:2px sol
   display:inline-flex; align-items:center; gap:10px;
   background:#fff; border:1px solid #e0e0e0; border-radius:999px; padding:8px 14px;
   box-shadow: inset 0 0 0 1px #f6f6f6;
+  justify-content:center;
 }
 .chip--mono{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight:700; background:var(--ring); border-color:var(--ring-b); }
+.centered-chip{ margin:8px auto 0 auto; } /* centers only the figure */
 
 /* % delta badge */
 .chip-delta{
@@ -66,9 +68,9 @@ nav#main-nav a.active{color:var(--brand); font-weight:600; border-bottom:2px sol
 .badge{
   display:inline-flex; align-items:center; justify-content:center;
   width:24px; height:24px; border-radius:999px; background:#dfefff; color:#1940d2; font-weight:700; font-size:13px;
-  border:1px solid #bcd6ff;
+  border:1px solid #bcd6ff; cursor:help;
 }
-[data-tip]{ position:relative; cursor:help; }
+[data-tip]{ position:relative; }
 [data-tip]::after{
   content: attr(data-tip); position:absolute; left:50%; transform: translateX(-50%) translateY(-6px);
   bottom: calc(100% + 8px); background:#111; color:#fff; font-size:12px; padding:6px 8px; border-radius:6px; white-space:nowrap;
@@ -94,16 +96,21 @@ h3{margin:16px 0 8px}
 /* Image */
 .hero-img{ display:block; margin:0 auto; width:70%; max-width:1050px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.06) }
 
-/* Closing footer */
-footer.closing{
-  margin-top:44px;
+/* Closing text card */
+.closing-text .closing-title{ margin-bottom:10px; font-weight:800; font-size:1.15em; text-align:left; }
+@media (max-width: 700px){ .closing-text .closing-title{ text-align:center; } }
+.closing-text .closing-body p{ margin:0 0 12px 0; }
+
+/* CTA section (separate) */
+.closing-cta-section{
+  margin-top:10px;
   background: linear-gradient(180deg, #ffffff 0%, #f7f8ff 100%);
-  border-top: 1px solid #ecefff;
+  border: 1px solid #ecefff;
+  border-radius: 14px;
 }
-.closing-wrap{ max-width: 1050px; margin: 0 auto; padding: 26px 18px; }
-.closing-title{ text-align:center; font-size:1.25em; font-weight:800; margin: 0 0 12px 0; }
-.closing-body{ text-align:justify; }
-.closing-cta{ text-align:center; margin-top:18px; }
+.closing-cta-wrap{
+  max-width: 1050px; margin: 0 auto; padding: 18px; display:flex; align-items:center; justify-content:center;
+}
 .btn{
   display:inline-block; padding:10px 16px; border-radius:10px;
   background:#eef3ff; color:#1a3db5; border:1px solid #cdd9ff; text-decoration:none; font-weight:600;
@@ -188,16 +195,16 @@ footer.closing{
   </div>
   <div class="stat-grid">
     <div class="stat">
-      <div class="stat-label"><span class="tiny">⬆️</span> Predicted Top <span class="badge" data-tip="±13% band around the model estimate">?</span></div>
-      <div class="chip chip--mono">$73,403 – $95,339</div>
+      <div class="stat-label"><span class="tiny">⬆️</span> Predicted Top <span class="badge" data-tip="±18% band (temp inverted from model)">?</span></div>
+      <div class="chip chip--mono centered-chip">$179,501 – $258,307</div>
     </div>
     <div class="stat">
-      <div class="stat-label"><span class="tiny">⬇️</span> Predicted Bottom <span class="badge" data-tip="±18% band around the model estimate">?</span></div>
-      <div class="chip chip--mono">$179,501 – $258,307</div>
+      <div class="stat-label"><span class="tiny">⬇️</span> Predicted Bottom <span class="badge" data-tip="±13% band (temp inverted from model)">?</span></div>
+      <div class="chip chip--mono centered-chip">$73,403 – $95,339</div>
     </div>
     <div class="stat">
       <div class="stat-label">BTC Price Change (YTD)</div>
-      <div class="chip chip--mono">
+      <div class="chip chip--mono centered-chip">
         61,709 → 117,511
         <span class="chip-delta delta-pos">+90.43%</span>
       </div>
@@ -310,27 +317,26 @@ footer.closing{
 
 
 
-<footer class="closing">
-  <div class="closing-wrap">
-    <h2 class="closing-title">
-      Like many transformative innovations, BTC could either revolutionise finance or remain a speculative bubble akin to historic manias.
-    </h2>
-
-    <div class="closing-body">
-      <p>
-        I can imagine a scenario where the world becomes even more globalised, energy is abundant (following a fusion or fission breakthrough), and Bitcoin successfully upgrades to quantum-resistant cryptography—emerging as the ultimate store of value for global wealth preservation.
-      </p>
-      <p>
-        I personally remain unconvinced, particularly as the market is still in its infancy and the asset remains highly speculative. Nevertheless, the potential upside is so substantial that I consider holding a modest hedge—using a DCA (dollar-cost averaging) approach—a prudent risk management strategy.
-      </p>
-      <p class="muted"><i>This is not investment advice. Please do your own research and consider both the risks and the potential of any asset.</i></p>
-
-      <p class="closing-cta">
-        <a class="btn" href="https://btc.com/" target="_blank" rel="noopener">Visit btc.com for the whitepaper</a>
-      </p>
-    </div>
+<section class="card closing-text">
+  <h2 class="closing-title">Like many transformative innovations, BTC could either revolutionise finance or remain a speculative bubble akin to historic manias.</h2>
+  <div class="closing-body">
+    <p>
+      I can imagine a scenario where the world becomes even more globalised, energy is abundant (following a fusion or fission breakthrough), and Bitcoin successfully upgrades to quantum-resistant cryptography—emerging as the ultimate store of value for global wealth preservation.
+    </p>
+    <p>
+      I personally remain unconvinced, particularly as the market is still in its infancy and the asset remains highly speculative. Nevertheless, the potential upside is so substantial that I consider holding a modest hedge—using a DCA (dollar-cost averaging) approach—a prudent risk management strategy.
+    </p>
   </div>
-</footer>
+  <p class="muted center"><i>This is not investment advice. Please do your own research and consider both the risks and the potential of any asset.</i></p>
+</section>
+
+
+
+<section class="closing-cta-section">
+  <div class="closing-cta-wrap">
+    <a class="btn" href="https://btc.com/" target="_blank" rel="noopener">Visit btc.com for the whitepaper</a>
+  </div>
+</section>
 
 </body>
 </html>
