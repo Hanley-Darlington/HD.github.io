@@ -101,14 +101,13 @@ h3{margin:16px 0 8px}
 .hero-img{ display:block; margin:0 auto; width:70%; max-width:1050px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.06) }
 
 /* Closing text card */
-.closing-text .closing-title{ margin-bottom:14px; font-weight:800; font-size:1.2em; text-align:center; }
-.closing-text .closing-body.two-col{
-  display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start;
-}
-.closing-text .closing-body.two-col p{ margin:0; }
-@media (max-width: 860px){
-  .closing-text .closing-body.two-col{ grid-template-columns:1fr; }
-}
+.closing-text .closing-title{margin-bottom:14px;font-weight:800;font-size:1.2em;text-align:center}
+.closing-text .closing-body.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.closing-text .closing-body.two-col p{margin:0}
+.closing-box{padding:14px 16px;border-radius:10px;border:1px solid transparent}
+.closing-box.positive{background:#e9f8ef;border-color:#bfead0}
+.closing-box.caution{background:#fff4e5;border-color:#f3d6b1}
+@media (max-width:860px){.closing-text .closing-body.two-col{grid-template-columns:1fr}}
 
 /* CTA section (separate) */
 .closing-cta-section{
@@ -327,14 +326,18 @@ h3{margin:16px 0 8px}
 
 
 <section class="card closing-text">
-  <h2 class="closing-title center">Like many transformative innovations, BTC could either revolutionise finance or remain a speculative bubble akin to historic manias.</h2>
+  <h2 class="closing-title">Like many transformative innovations, BTC could either revolutionise finance or remain a speculative bubble akin to historic manias.</h2>
   <div class="closing-body two-col">
-    <p>
-      I can imagine a scenario where the world becomes even more globalised, energy is abundant (following a fusion or fission breakthrough), and Bitcoin successfully upgrades to quantum-resistant cryptography—emerging as the ultimate store of value for global wealth preservation.
-    </p>
-    <p>
-      I personally remain unconvinced, particularly as the market is still in its infancy and the asset remains highly speculative. Nevertheless, the potential upside is so substantial that I consider holding a modest hedge—using a DCA (dollar-cost averaging) approach—a prudent risk management strategy.
-    </p>
+    <div class="closing-box positive">
+      <p>
+        I can imagine a scenario where the world becomes even more globalised, energy is abundant (following a fusion or fission breakthrough), and Bitcoin successfully upgrades to quantum-resistant cryptography—emerging as the ultimate store of value for global wealth preservation.
+      </p>
+    </div>
+    <div class="closing-box caution">
+      <p>
+        I personally remain unconvinced, particularly as the market is still in its infancy and the asset remains highly speculative. Nevertheless, the potential upside is so substantial that I consider holding a modest hedge—using a DCA (dollar-cost averaging) approach—a prudent risk management strategy.
+      </p>
+    </div>
   </div>
   <p class="muted center"><i>This is not investment advice. Please do your own research and consider both the risks and the potential of any asset.</i></p>
 </section>
