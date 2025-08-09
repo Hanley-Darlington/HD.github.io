@@ -41,7 +41,11 @@ nav#main-nav a.active{color:var(--brand); font-weight:600; border-bottom:2px sol
 /* Forecast stat grid */
 .forecast .forecast-header{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; }
 .stat-grid{ display:grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap:16px; margin-top:12px; }
-.stat{ background:#fff; border:1px solid #ececec; border-radius:12px; padding:16px; box-shadow:0 1px 0 rgba(0,0,0,.02); transition:transform .18s ease, box-shadow .18s ease; }
+.stat{
+  background:#fff; border:1px solid #ececec; border-radius:12px; padding:16px; box-shadow:0 1px 0 rgba(0,0,0,.02);
+  transition:transform .18s ease, box-shadow .18s ease;
+  display:flex; flex-direction:column; /* enable centering chip cleanly */
+}
 .stat:hover{ transform: translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.06); }
 .stat-label{ font-size:.92em; color:#444; margin-bottom:8px; display:flex; align-items:center; gap:8px; text-align:left; }
 .stat-label .tiny{ font-size:1.05em; line-height:1; }
@@ -54,7 +58,7 @@ nav#main-nav a.active{color:var(--brand); font-weight:600; border-bottom:2px sol
   justify-content:center;
 }
 .chip--mono{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight:700; background:var(--ring); border-color:var(--ring-b); }
-.centered-chip{ margin:8px auto 0 auto; } /* centers only the figure */
+.centered-chip{ margin:8px auto 0 auto; align-self:center; } /* centers only the figure */
 
 /* % delta badge */
 .chip-delta{
@@ -97,9 +101,14 @@ h3{margin:16px 0 8px}
 .hero-img{ display:block; margin:0 auto; width:70%; max-width:1050px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.06) }
 
 /* Closing text card */
-.closing-text .closing-title{ margin-bottom:10px; font-weight:800; font-size:1.15em; text-align:left; }
-@media (max-width: 700px){ .closing-text .closing-title{ text-align:center; } }
-.closing-text .closing-body p{ margin:0 0 12px 0; }
+.closing-text .closing-title{ margin-bottom:14px; font-weight:800; font-size:1.2em; text-align:center; }
+.closing-text .closing-body.two-col{
+  display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start;
+}
+.closing-text .closing-body.two-col p{ margin:0; }
+@media (max-width: 860px){
+  .closing-text .closing-body.two-col{ grid-template-columns:1fr; }
+}
 
 /* CTA section (separate) */
 .closing-cta-section{
@@ -318,8 +327,8 @@ h3{margin:16px 0 8px}
 
 
 <section class="card closing-text">
-  <h2 class="closing-title">Like many transformative innovations, BTC could either revolutionise finance or remain a speculative bubble akin to historic manias.</h2>
-  <div class="closing-body">
+  <h2 class="closing-title center">Like many transformative innovations, BTC could either revolutionise finance or remain a speculative bubble akin to historic manias.</h2>
+  <div class="closing-body two-col">
     <p>
       I can imagine a scenario where the world becomes even more globalised, energy is abundant (following a fusion or fission breakthrough), and Bitcoin successfully upgrades to quantum-resistant cryptography—emerging as the ultimate store of value for global wealth preservation.
     </p>
