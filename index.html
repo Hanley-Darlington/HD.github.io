@@ -39,18 +39,16 @@ nav#main-nav a.active{color:var(--brand); font-weight:600; border-bottom:2px sol
 .card-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
 
 /* Forecast stat grid */
-.forecast .forecast-header{
-  display:flex;
-  flex-direction:column;   /* stack title + subtitle */
-  align-items:center;      /* center horizontally */
-  text-align:center;       /* center text */
-  gap:6px;
-}
+.forecast .forecast-header{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; }
 .stat-grid{ display:grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap:16px; margin-top:12px; }
 .stat{
   background:#fff; border:1px solid #ececec; border-radius:12px; padding:16px; box-shadow:0 1px 0 rgba(0,0,0,.02);
   transition:transform .18s ease, box-shadow .18s ease;
-  display:flex; flex-direction:column; /* enable centering chip cleanly */
+  display:flex;
+  flex-direction:column;
+  align-items:center;     /* center horizontally */
+  justify-content:center; /* center vertically */
+  text-align:center;      /* center text */
 }
 .stat:hover{ transform: translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.06); }
 .stat-label{ font-size:.92em; color:#444; margin-bottom:8px; display:flex; align-items:center; gap:8px; text-align:left; }
