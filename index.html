@@ -150,15 +150,25 @@ details.expander.card .content{ padding:0 18px 18px; }
 .expander-note{ color:#555; font-size:.95em; margin:6px 0 12px; text-align:left; }
 
 /* Sources grid layout */
-.sources-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-  gap:1.5em;
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5em;
+  justify-content: center; /* center the grid */
+  max-width: 1100px;       /* optional: prevents over-wide stretching */
+  margin: 0 auto;          /* centers the block itself */
 }
-.sources-grid h3{margin-top:0;}
-.sources-grid ul{margin:0;padding-left:18px;}
-@media (max-width:600px){
-  .sources-grid{grid-template-columns:1fr;}
+.sources-grid h3 {
+  margin-top: 0;
+}
+.sources-grid ul {
+  margin: 0;
+  padding-left: 18px;
+}
+@media (max-width: 600px) {
+  .sources-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Responsive */
