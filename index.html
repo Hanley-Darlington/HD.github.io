@@ -132,42 +132,34 @@ h3{margin:16px 0 8px}
 }
 .btn:hover{ transform: translateY(-2px); box-shadow:0 12px 20px rgba(26,61,181,.12); background:#e6eeff; }
 
-/* --- Sources expander bubble --- */
-details.expander.card{ padding:0; }
-details.expander.card summary{
-  list-style:none; cursor:pointer; user-select:none;
-  display:flex; align-items:center; justify-content:center; /* center text */
-  gap:10px; padding:16px 18px; margin:0; font-weight:700; font-size:1.05em;
-  position:relative;
-}
-details.expander.card summary .caret{
-  position:absolute; left:18px; /* arrow stays left */
-  transition: transform .15s ease;
-}
-details.expander.card[open] .caret{ transform: rotate(90deg); }
-details.expander.card .content{ padding:0 18px 18px; }
-
-.expander-note{ color:#555; font-size:.95em; margin:6px 0 12px; text-align:left; }
-
 /* Sources grid layout */
 .sources-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5em;
-  justify-content: center; /* center the grid */
-  max-width: 1750px;       /* optional: prevents over-wide stretching */
-  margin: 0 auto;          /* centers the block itself */
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 2.5em; /* space between columns */
+  justify-content: center; /* centers both full and partial rows */
+  max-width: 1600px;
+  margin: 0 auto;
 }
+
+.sources-grid > div {
+  flex: 1 1 280px; /* min width per column */
+  max-width: 320px; /* optional: prevents columns from stretching too wide */
+}
+
 .sources-grid h3 {
   margin-top: 0;
 }
+
 .sources-grid ul {
   margin: 0;
   padding-left: 18px;
 }
+
 @media (max-width: 600px) {
   .sources-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center; /* center single column on mobile */
   }
 }
 
