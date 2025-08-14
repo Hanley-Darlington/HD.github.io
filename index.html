@@ -132,6 +132,20 @@ h3{margin:16px 0 8px}
 }
 .btn:hover{ transform: translateY(-2px); box-shadow:0 12px 20px rgba(26,61,181,.12); background:#e6eeff; }
 
+/* --- Sources expander bubble --- */
+details.expander.card{ padding:0; }
+details.expander.card summary{
+  list-style:none; cursor:pointer; user-select:none;
+  display:flex; align-items:center; gap:10px;
+  padding:16px 18px; margin:0; font-weight:700; font-size:1.05em;
+}
+details.expander.card summary::-webkit-details-marker{ display:none; }
+details.expander.card .content{ padding:0 18px 18px; }
+details.expander.card .caret{ transition: transform .15s ease; }
+details.expander.card[open] .caret{ transform: rotate(90deg); }
+/* optional emphasis */
+.expander-note{ color:#555; font-size:.95em; margin:6px 0 12px; }
+
 /* Responsive */
 @media (max-width: 900px){
   .stat-grid{ grid-template-columns: 1fr; }
@@ -375,6 +389,55 @@ h3{margin:16px 0 8px}
     <a class="btn" href="https://btc.com/" target="_blank" rel="noopener">THE WHITEPAPER</a>
   </div>
 </section>
+
+
+<details class="card expander" id="sources">
+  <summary>
+    <span class="caret">▶</span>
+    Sources &amp; Further Reading — <span style="font-weight:600;">click to expand</span>
+  </summary>
+  <div class="content">
+    <p class="expander-note">Curated links that back up energy, security, market-structure and data claims.</p>
+
+    <h3>Energy, Environment &amp; Mining</h3>
+    <ul>
+      <li><a class="link-strong" href="https://ccaf.io/cbnsi/cbeci" target="_blank" rel="noopener">Cambridge Bitcoin Electricity Consumption Index (CBECI)</a></li>
+      <li><a class="link-strong" href="https://ccaf.io/cbeci/mining_map" target="_blank" rel="noopener">Cambridge Bitcoin Mining Map</a></li>
+      <li><a class="link-strong" href="https://ccaf.io/cbnsi/cbeci/ghg" target="_blank" rel="noopener">CBECI — GHG &amp; Electricity Mix</a></li>
+      <li><a class="link-strong" href="https://kpmg.com/kpmg-us/content/dam/kpmg/pdf/2024/bitcoins-role-esg-imperative.pdf" target="_blank" rel="noopener">KPMG: Bitcoin’s role in the ESG imperative (PDF)</a></li>
+      <li><a class="link-strong" href="https://coinshares.com/insights/research-data/2024-mining-report/" target="_blank" rel="noopener">CoinShares: Bitcoin Mining Network Report (2024)</a></li>
+      <li><a class="link-strong" href="https://www.galaxy.com/insights/research/2024-mid-year-mining" target="_blank" rel="noopener">Galaxy Research: 2024 Mining Mid-Year</a></li>
+      <li><a class="link-strong" href="https://www.sciencedirect.com/science/article/pii/S0921344921005103" target="_blank" rel="noopener">Resources, Conservation &amp; Recycling: Bitcoin’s E-Waste (peer-reviewed)</a></li>
+      <li><a class="link-strong" href="https://assets.ctfassets.net/2d5q1td6cyxq/5mRjc9X5LTXFFihIlTt7QK/e7bcba47217b60423a01a357e036105e/BCEI_White_Paper.pdf" target="_blank" rel="noopener">Square/ARK: Bitcoin &amp; Clean Energy (PDF)</a></li>
+      <li><a class="link-strong" href="https://endthefud.org/" target="_blank" rel="noopener">EndTheFUD.org — rebuttals hub</a></li>
+    </ul>
+
+    <h3>Network Security &amp; Protocol Economics</h3>
+    <ul>
+      <li><a class="link-strong" href="https://www.cs.cornell.edu/~ie53/publications/btcProcArXiv.pdf" target="_blank" rel="noopener">Eyal &amp; Sirer: Selfish Mining (PDF)</a></li>
+      <li><a class="link-strong" href="https://oar.princeton.edu/bitstream/88435/pr1kz58/1/InstabilityBitcoinWithoutBlockReward.pdf" target="_blank" rel="noopener">Carlsten et al.: Instability Without Block Reward (PDF)</a></li>
+      <li><a class="link-strong" href="https://socialsciences.uchicago.edu/sites/default/files/2024-09/Economic%20Limits%20Crypto%20Blockchains%20-%20QJE%20Sept%202024.pdf" target="_blank" rel="noopener">Budish (QJE 2024): Economic Limits of Blockchains (PDF)</a></li>
+    </ul>
+
+    <h3>Market Structure, Tether &amp; Concentration</h3>
+    <ul>
+      <li><a class="link-strong" href="https://www.nber.org/system/files/working_papers/w29396/w29396.pdf" target="_blank" rel="noopener">NBER: Blockchain Analysis of the Bitcoin Market (PDF)</a></li>
+      <li><a class="link-strong" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3195066" target="_blank" rel="noopener">Is Bitcoin Really Untethered? (SSRN)</a></li>
+      <li><a class="link-strong" href="https://ag.ny.gov/press-release/2021/attorney-general-james-ends-virtual-currency-trading-platform-bitfinex-and-tether" target="_blank" rel="noopener">NYAG: Bitfinex/Tether settlement</a></li>
+    </ul>
+
+    <h3>Lightning (L2) — Live Stats</h3>
+    <ul>
+      <li><a class="link-strong" href="https://bitcoinvisuals.com/lightning" target="_blank" rel="noopener">Bitcoin Visuals: Lightning Dashboard</a></li>
+      <li><a class="link-strong" href="https://mempool.space/graphs/lightning/capacity" target="_blank" rel="noopener">mempool.space: Capacity Over Time</a></li>
+    </ul>
+
+    <h3>Primary</h3>
+    <ul>
+      <li><a class="link-strong" href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener">Bitcoin Whitepaper (PDF)</a></li>
+    </ul>
+  </div>
+</details>
 
 </body>
 </html>
