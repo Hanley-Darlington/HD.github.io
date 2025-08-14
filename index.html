@@ -10,6 +10,16 @@
 
 /* Custom nav colors */
 /* Red background for BTC & PHO */
+/* Default (done) */
+.nav-normal {
+  background: transparent;
+  color: inherit; /* uses default nav link color */
+  font-weight: normal;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Red background for in-progress high-priority (BTC, PHO) */
 .nav-red {
   background: red !important;
   color: white !important;
@@ -18,7 +28,7 @@
   border-radius: 4px;
 }
 
-/* Construction style for all others */
+/* Construction style for in-progress normal priority */
 .nav-construction {
   background: repeating-linear-gradient(
     45deg,
@@ -27,7 +37,7 @@
     black 10px,
     black 20px
   );
-  color: white !important; /* white text for better contrast */
+  color: white !important; /* white text for contrast */
   font-weight: bold;
   padding: 4px 8px;
   border-radius: 4px;
