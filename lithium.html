@@ -3,41 +3,69 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <title>Darlington ALGOs — Lithium</title>
+  <title>Lithium — Darlington ALGOs</title>
+  <link rel="icon" type="image/png" href="assets/assets%20lit/lit.png">
   <style>
-:root{--brand:#1976d2; --ink:#222; --card:#f7f7f7}
+:root{--maxw:1750px;--brand:#1976d2;--ink:#222;--muted:#555;--card:#f7f7f7}
 *{box-sizing:border-box}
-body{margin:20px auto 40px; max-width:1750px; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--ink); line-height:1.55; font-size:16px}
-nav#main-nav{display:flex;flex-wrap:wrap;gap:26px;justify-content:center;align-items:center;padding:14px 0 10px;margin-bottom:18px;border-bottom:1px solid #ececec;font-size:1.05em}
-nav#main-nav a{color:#444;text-decoration:none;padding-bottom:2px;position:relative}
-nav#main-nav a:after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--brand);transition:width .2s ease}
-nav#main-nav a:hover:after{width:100%}
-nav#main-nav a.active{color:var(--brand);font-weight:600;border-bottom:2px solid var(--brand)}
-.card{background:var(--card);border:1px solid #ececec;border-radius:14px;padding:22px 24px;margin:16px auto;max-width:1100px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+body{margin:20px auto 40px;max-width:var(--maxw);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.55}
+h2{margin:0 0 10px} h3{margin:16px 0 8px}
+.card{background:var(--card);border:1px solid #ececec;border-radius:14px;padding:22px 24px;margin:16px 0}
+.muted{color:var(--muted)}
 .center{text-align:center}
+/* Nav */
+nav#main-nav{display:flex;flex-wrap:wrap;gap:26px;justify-content:center;align-items:center;padding:14px 0 10px;margin-bottom:18px;border-bottom:1px solid #ececec;font-size:1.05em}
+nav#main-nav a{color:#444;text-decoration:none;position:relative;padding:4px 8px;border-radius:4px}
+/* States */
+.nav-normal{background:transparent;color:inherit}
+.nav-red{background:red;color:#fff;font-weight:700}
+.nav-construction{
+  background:repeating-linear-gradient(45deg,#ffd400 0 10px,#000 10px 20px);
+  color:#fff;font-weight:700
+}
 </style>
 </head>
 <body>
 <nav id="main-nav">
-  <a href="index.html">BTC</a>
-  <a href="gold.html">GLD</a>
-  <a href="copper.html">COPX</a>
-  <a href="lithium.html" class="active">LIT</a>
-  <a href="rees.html">REMX</a>
-  <a href="uranium.html">URA</a>
-  <a href="grain.html">DBA</a>
-  <a href="semis.html">SOXX</a>
-  <a href="liquifiednaturalgas.html">UNG</a>
-  <a href="graphite.html">NMG</a>
-  <a href="hydrogen.html">HYDR</a>
-  <a href="water.html">PHO</a>
+  <a href="index.html" class="nav-red">BTC</a>
+  <a href="gold.html" class="nav-construction">GLD</a>
+  <a href="copper.html" class="nav-construction">COPX</a>
+  <a href="lithium.html" class="nav-construction">LIT</a>
+  <a href="rees.html" class="nav-construction">REMX</a>
+  <a href="uranium.html" class="nav-construction">URA</a>
+  <a href="grain.html" class="nav-construction">DBA</a>
+  <a href="semis.html" class="nav-construction">SOXX</a>
+  <a href="liquifiednaturalgas.html" class="nav-construction">UNG</a>
+  <a href="graphite.html" class="nav-construction">NMG</a>
+  <a href="hydrogen.html" class="nav-construction">HYDR</a>
+  <a href="water.html" class="nav-red">PHO</a>
 </nav>
-
 <section class="card">
   <h2>Lithium</h2>
-  <p class="center">coming soon</p>
+  <p class="muted">Background coming soon.</p>
 </section>
+
+
+<section class="card">
+  <h2>Overview</h2>
+  <p class="muted">A chart or key metrics panel will appear here.</p>
+  <div class="center" style="padding:24px;border:1px dashed #bbb;border-radius:10px;">
+    <em>Placeholder</em>
+  </div>
+</section>
+
+
+<details class="card">
+  <summary><b>Sources</b> (to be added)</summary>
+  <div style="padding-top:10px">
+    <p class="muted">Add references and links here.</p>
+    <ul>
+      <!-- Example:
+      <li><a href="#" target="_blank" rel="noopener">Primary dataset</a></li>
+      -->
+    </ul>
+  </div>
+</details>
 
 </body>
 </html>
