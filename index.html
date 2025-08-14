@@ -7,6 +7,24 @@
   <title>Darlington ALGOs</title>
   <style>
 :root{--maxw:1750px;--brand:#1976d2;--ink:#222;--muted:#555;--card:#f7f7f7;--ring:#e3f1fd;--ring-b:#8ec1f7;--green:#eaffea}
+
+/* Custom nav colors */
+.nav-green { color: green !important; font-weight: bold; }
+.nav-red { color: red !important; font-weight: bold; }
+.nav-construction {
+  background: repeating-linear-gradient(
+    45deg,
+    yellow,
+    yellow 10px,
+    black 10px,
+    black 20px
+  );
+  color: black !important;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
 *{box-sizing:border-box}
 html,body{scroll-behavior:smooth}
 body{margin:20px auto 40px;max-width:var(--maxw);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.55;font-size:16px;text-align:justify}
@@ -143,18 +161,18 @@ details.expander.card .content{padding:0 18px 18px}
 
 
 <nav id="main-nav">
-  <a href="index.html" class="active">BTC</a>
-  <a href="gold.html">GLD</a>
-  <a href="copper.html">COPX</a>
-  <a href="lithium.html">LIT</a>
-  <a href="rees.html">REMX</a>
-  <a href="uranium.html">URA</a>
-  <a href="grain.html">DBA</a>
-  <a href="semis.html">SOXX</a>
-  <a href="liquifiednaturalgas.html">UNG</a>
-  <a href="graphite.html">NMG</a>
-  <a href="hydrogen.html">HYDR</a>
-  <a href="water.html">PHO</a>
+  <a href="index.html" class="nav-red active">BTC</a>
+  <a href="gold.html" class="nav-construction">GLD</a>
+  <a href="copper.html" class="nav-construction">COPX</a>
+  <a href="lithium.html" class="nav-construction">LIT</a>
+  <a href="rees.html" class="nav-construction">REMX</a>
+  <a href="uranium.html" class="nav-construction">URA</a>
+  <a href="grain.html" class="nav-construction">DBA</a>
+  <a href="semis.html" class="nav-construction">SOXX</a>
+  <a href="liquifiednaturalgas.html" class="nav-construction">UNG</a>
+  <a href="graphite.html" class="nav-construction">NMG</a>
+  <a href="hydrogen.html" class="nav-construction">HYDR</a>
+  <a href="water.html" class="nav-red">PHO</a>
 </nav>
 
 
