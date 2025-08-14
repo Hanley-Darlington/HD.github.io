@@ -9,8 +9,16 @@
 :root{--maxw:1750px;--brand:#1976d2;--ink:#222;--muted:#555;--card:#f7f7f7;--ring:#e3f1fd;--ring-b:#8ec1f7;--green:#eaffea}
 
 /* Custom nav colors */
-.nav-green { color: green !important; font-weight: bold; }
-.nav-red { color: red !important; font-weight: bold; }
+/* Red background for BTC & PHO */
+.nav-red {
+  background: red !important;
+  color: white !important;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Construction style for all others */
 .nav-construction {
   background: repeating-linear-gradient(
     45deg,
@@ -19,7 +27,7 @@
     black 10px,
     black 20px
   );
-  color: black !important;
+  color: white !important; /* white text for better contrast */
   font-weight: bold;
   padding: 4px 8px;
   border-radius: 4px;
