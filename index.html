@@ -23,7 +23,6 @@ nav#main-nav a.active{color:var(--brand);font-weight:600;border-bottom:2px solid
 .card:hover{transform:translateY(-3px) scale(1.005);box-shadow:0 22px 48px rgba(0,0,0,.07)}
 .card-green{background:var(--green);border-color:#d7f6d7}
 .card-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-/* put the badge on the LEFT for the green card header */
 .card-green .card-header{justify-content:flex-start;gap:8px}
 .card-green .card-header .badge{order:-1;margin-right:8px}
 
@@ -56,28 +55,27 @@ a{color:#0066cc}
 .link-strong:hover{text-decoration:underline}
 
 /* Typo helpers */
-h2{margin:0 0 10px}h3{margin:16px 0 8px}
-.muted{color:#555;font-size:.95em}.center{text-align:center}
+h2{margin:0 0 10px}h3{margin:16px 0 8px;text-align:center}
+.muted{color:var(--muted);font-size:.95em}
+.center{text-align:center}
 .mt-4{margin-top:16px}.mt-6{margin-top:24px}
 
 /* Image */
 .hero-img{display:block;margin:0 auto;width:70%;max-width:1050px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
 
-/* Closing pop-out boxes (with hover like stat cards) */
+/* Closing pop-out boxes */
 .pros-cons-wrapper{display:flex;gap:1.5em;flex-wrap:wrap;margin-top:1em}
 .pros-box,.cons-box{flex:1;padding:18px 20px;border-radius:12px;border:1px solid transparent;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.02);transition:transform .18s,box-shadow .18s;font-size:.97em}
 .pros-box{background:#e6f8ef;border-color:#b8e2c6}
 .cons-box{background:#fff7e6;border-color:#f2dcb8}
 .pros-box:hover,.cons-box:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.06)}
 
-/* WHITEPAPER CTA centered in a soft card */
-.closing-cta-section{margin-top:10px;background:linear-gradient(180deg,#ffffff 0%,#f7f8ff 100%);border:1px solid #ecefff;border-radius:14px}
-.closing-cta-wrap{max-width:1050px;margin:0 auto;padding:18px;display:flex;align-items:center;justify-content:center}
+/* CTA button */
 .btn{display:inline-block;padding:10px 16px;border-radius:10px;background:#eef3ff;color:#1a3db5;border:1px solid #cdd9ff;text-decoration:none;font-weight:600;transition:transform .15s,box-shadow .15s,background .15s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 20px rgba(26,61,181,.12);background:#e6eeff}
 .btn:link,.btn:visited{color:#1a3db5;text-decoration:none}
 
-/* Sources expander — single caret on left, centered title */
+/* Sources expander */
 details.expander.card{padding:0}
 details.expander.card summary{display:flex;align-items:center;justify-content:center;gap:12px;position:relative;padding:14px 18px;margin:0;font-weight:700;font-size:1.05em;list-style:none;border:2px solid #2d68f0;border-left-width:0;border-right-width:0;background:#f7f7f7}
 details.expander.card summary::-webkit-details-marker{display:none}
@@ -87,21 +85,30 @@ details.expander.card[open] summary::before{transform:rotate(90deg)}
 details.expander.card .content{padding:0 18px 18px}
 .expander-note{color:#555;font-size:.95em;margin:6px 0 12px}
 
-/* Sources grid — last row centered */
+/* Sources grid */
 .sources-grid{display:flex;flex-wrap:wrap;gap:2.2em;justify-content:center;max-width:1600px;margin:0 auto}
 .sources-grid>div{flex:1 1 280px;max-width:320px}
-.sources-grid h3{margin-top:0}
 .sources-grid ul{margin:0;padding-left:18px}
 
-/* Responsive tweaks */
+/* Mobile fixes */
 @media (max-width:900px){.stat-grid{grid-template-columns:1fr}}
 @media (max-width:860px){.closing-text .closing-body.two-col{grid-template-columns:1fr}}
 @media (max-width:768px){.pros-cons-wrapper{flex-direction:column}}
-@media (max-width:600px){body{max-width:95%;font-size:14px;margin:10px auto 30px}.hero-img{width:100%}.sources-grid{flex-direction:column;align-items:center}}
-
-.sources-grid h3 {
-  margin-top: 0;
-  text-align: center;
+@media (max-width:600px){
+  body{max-width:95%;font-size:14px;margin:10px auto 30px}
+  .hero-img{width:100%}
+  /* FIX sources layout for mobile */
+  .sources-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+    max-width:100%;
+    justify-items:stretch;
+  }
+  .sources-grid>div{
+    width:100%;
+    max-width:none;
+  }
 }
 </style>
 </head>
