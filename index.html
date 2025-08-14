@@ -171,6 +171,37 @@ h3{margin:16px 0 8px}
   body{ max-width:95%; font-size:14px; margin:10px auto 30px; }
   .hero-img{ width:100% }
 }
+/* Pop-out boxes at the end */
+.pros-box, .cons-box {
+  flex: 1;
+  padding: 18px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  font-size: 0.97em;
+}
+
+.pros-box {
+  background-color: #e6f8ef; /* light green */
+  border: 1px solid #b8e2c6;
+}
+
+.cons-box {
+  background-color: #fff7e6; /* light yellow */
+  border: 1px solid #f2dcb8;
+}
+
+.pros-cons-wrapper {
+  display: flex;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  margin-top: 1em;
+}
+
+@media (max-width: 768px) {
+  .pros-cons-wrapper {
+    flex-direction: column;
+  }
+}
 </style>
 </head>
 <body>
@@ -385,16 +416,12 @@ h3{margin:16px 0 8px}
 
 <section class="card closing-text">
   <h2 class="closing-title">Like many transformative innovations, BTC could either revolutionise finance or remain a speculative bubble akin to historic manias.</h2>
-  <div class="closing-body two-col">
-    <div class="closing-box positive">
-      <p>
-        In either a fractured or a globalised world, abundant energy from nuclear breakthroughs and a successful BTC transition to quantum-resistant cryptography could converge to position it as the ultimate store of value for global wealth preservation.
-      </p>
+  <div class="pros-cons-wrapper">
+    <div class="pros-box">
+      In either a fractured or a globalised world, abundant energy from nuclear breakthroughs and a successful BTC transition to quantum-resistant cryptography could converge to position it as the ultimate store of value for global wealth preservation.
     </div>
-    <div class="closing-box caution">
-      <p>
-        I personally remain unconvinced, particularly as the market is still in its infancy and the asset remains highly speculative. Nevertheless, the potential upside is so substantial that a hedge — using a DCA approach — seems sensible.
-      </p>
+    <div class="cons-box">
+      I personally remain unconvinced, particularly as the market is still in its infancy and the asset remains highly speculative. Nevertheless, the potential upside is so substantial that a hedge — using a DCA approach — seems sensible.
     </div>
   </div>
   <p class="muted center"><i>This is not investment advice. Please do your own research and consider both the risks and the potential of any asset.</i></p>
