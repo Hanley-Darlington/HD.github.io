@@ -6,8 +6,9 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <title>Darlington ALGOs</title>
   <style>
-:root{--maxw:1750px;--brand:#1976d2;--ink:#222;--muted:#555;--card:#f7f7f7;--ring:#e3f1fd;--ring-b:#8ec1f7;--green:#eaffea;}
-*{box-sizing:border-box}html,body{scroll-behavior:smooth}
+:root{--maxw:1750px;--brand:#1976d2;--ink:#222;--muted:#555;--card:#f7f7f7;--ring:#e3f1fd;--ring-b:#8ec1f7;--green:#eaffea}
+*{box-sizing:border-box}
+html,body{scroll-behavior:smooth}
 body{margin:20px auto 40px;max-width:var(--maxw);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.55;font-size:16px;text-align:justify}
 
 /* Nav */
@@ -23,7 +24,8 @@ nav#main-nav a.active{color:var(--brand);font-weight:600;border-bottom:2px solid
 .card-green{background:var(--green);border-color:#d7f6d7}
 .card-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 /* put the badge on the LEFT for the green card header */
-.card-green .card-header{justify-content:flex-start}
+.card-green .card-header{justify-content:flex-start;gap:8px}
+.card-green .card-header .badge{order:-1;margin-right:8px}
 
 /* Forecast stat grid */
 .forecast .forecast-header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -61,21 +63,25 @@ h2{margin:0 0 10px}h3{margin:16px 0 8px}
 /* Image */
 .hero-img{display:block;margin:0 auto;width:70%;max-width:1050px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
 
-/* Closing pop-out boxes */
+/* Closing pop-out boxes (with hover like stat cards) */
 .pros-cons-wrapper{display:flex;gap:1.5em;flex-wrap:wrap;margin-top:1em}
-.pros-box,.cons-box{flex:1;padding:18px 20px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.08);font-size:.97em;border:1px solid transparent;background:#fff}
+.pros-box,.cons-box{flex:1;padding:18px 20px;border-radius:12px;border:1px solid transparent;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.02);transition:transform .18s,box-shadow .18s;font-size:.97em}
 .pros-box{background:#e6f8ef;border-color:#b8e2c6}
 .cons-box{background:#fff7e6;border-color:#f2dcb8}
+.pros-box:hover,.cons-box:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.06)}
 
-/* CTA button (works anywhere) */
+/* WHITEPAPER CTA centered in a soft card */
+.closing-cta-section{margin-top:10px;background:linear-gradient(180deg,#ffffff 0%,#f7f8ff 100%);border:1px solid #ecefff;border-radius:14px}
+.closing-cta-wrap{max-width:1050px;margin:0 auto;padding:18px;display:flex;align-items:center;justify-content:center}
 .btn{display:inline-block;padding:10px 16px;border-radius:10px;background:#eef3ff;color:#1a3db5;border:1px solid #cdd9ff;text-decoration:none;font-weight:600;transition:transform .15s,box-shadow .15s,background .15s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 20px rgba(26,61,181,.12);background:#e6eeff}
 .btn:link,.btn:visited{color:#1a3db5;text-decoration:none}
 
-/* Sources expander — one arrow, centered title, arrow left */
+/* Sources expander — single caret on left, centered title */
 details.expander.card{padding:0}
 details.expander.card summary{display:flex;align-items:center;justify-content:center;gap:12px;position:relative;padding:14px 18px;margin:0;font-weight:700;font-size:1.05em;list-style:none;border:2px solid #2d68f0;border-left-width:0;border-right-width:0;background:#f7f7f7}
 details.expander.card summary::-webkit-details-marker{display:none}
+details.expander.card summary::marker{content:""}
 details.expander.card summary::before{content:"▸";position:absolute;left:18px;line-height:1;transition:transform .15s}
 details.expander.card[open] summary::before{transform:rotate(90deg)}
 details.expander.card .content{padding:0 18px 18px}
@@ -92,7 +98,6 @@ details.expander.card .content{padding:0 18px 18px}
 @media (max-width:860px){.closing-text .closing-body.two-col{grid-template-columns:1fr}}
 @media (max-width:768px){.pros-cons-wrapper{flex-direction:column}}
 @media (max-width:600px){body{max-width:95%;font-size:14px;margin:10px auto 30px}.hero-img{width:100%}.sources-grid{flex-direction:column;align-items:center}}
-
 </style>
 </head>
 <body>
@@ -327,10 +332,7 @@ details.expander.card .content{padding:0 18px 18px}
 
 
 <details class="card expander" id="sources">
-  <summary>
-    <span class="caret">▶</span>
-    Sources <span style="font-weight:600;"click to expand</span>
-  </summary>
+  <summary>Sources — click to expand</summary>
     <div class="sources-grid">
       <div>
         <h3>Energy, Environment &amp; Mining</h3>
