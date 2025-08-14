@@ -24,7 +24,6 @@ nav#main-nav a.active{color:var(--brand);font-weight:600;border-bottom:2px solid
 .card-green{background:var(--green);border-color:#d7f6d7}
 .card-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .card-green .card-header{justify-content:flex-start;gap:8px}
-.card-green .card-header .badge{order:-1;margin-right:8px}
 
 /* Forecast stat grid */
 .forecast .forecast-header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -42,7 +41,7 @@ nav#main-nav a.active{color:var(--brand);font-weight:600;border-bottom:2px solid
 .chip-delta.delta-pos{background:#e9f8ef;color:#126b2e;border-color:#bfead0}
 .chip-delta.delta-neg{background:#ffefef;color:#8b1a19;border-color:#f2c7c7}
 
-/* Badges & tooltip */
+/* Badges & tooltip (if used elsewhere) */
 .badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:#dfefff;color:#1940d2;font-weight:700;font-size:13px;border:1px solid #bcd6ff;cursor:help}
 [data-tip]{position:relative}
 [data-tip]::after{content:attr(data-tip);position:absolute;left:0;transform:translateY(-6px);bottom:calc(100% + 8px);background:#111;color:#fff;font-size:12px;padding:6px 8px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
@@ -55,27 +54,39 @@ a{color:#0066cc}
 .link-strong:hover{text-decoration:underline}
 
 /* Typo helpers */
-h2{margin:0 0 10px}h3{margin:16px 0 8px;text-align:center}
+h2{margin:0 0 10px}
+h3{margin:16px 0 8px}
 .muted{color:var(--muted);font-size:.95em}
 .center{text-align:center}
 .mt-4{margin-top:16px}.mt-6{margin-top:24px}
 
+/* Center the big closing title nicely */
+.closing-text .closing-title{max-width:980px;margin:0 auto 14px;text-align:center;font-weight:800;font-size:1.2em}
+
+/* “Macro intro” card above final boxes (optional hover) */
+.macro-intro{background:#fff;border:1px solid #ececec;border-radius:12px;padding:16px 18px;box-shadow:0 1px 0 rgba(0,0,0,.02);transition:transform .18s,box-shadow .18s;margin-bottom:14px}
+.macro-intro:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.06)}
+
 /* Image */
 .hero-img{display:block;margin:0 auto;width:70%;max-width:1050px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
 
-/* Closing pop-out boxes */
+/* Closing pop-out boxes (hover like stat cards) */
 .pros-cons-wrapper{display:flex;gap:1.5em;flex-wrap:wrap;margin-top:1em}
 .pros-box,.cons-box{flex:1;padding:18px 20px;border-radius:12px;border:1px solid transparent;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.02);transition:transform .18s,box-shadow .18s;font-size:.97em}
 .pros-box{background:#e6f8ef;border-color:#b8e2c6}
 .cons-box{background:#fff7e6;border-color:#f2dcb8}
 .pros-box:hover,.cons-box:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.06)}
+@media(max-width:768px){.pros-cons-wrapper{flex-direction:column}}
 
-/* CTA button */
-.btn{display:inline-block;padding:10px 16px;border-radius:10px;background:#eef3ff;color:#1a3db5;border:1px solid #cdd9ff;text-decoration:none;font-weight:600;transition:transform .15s,box-shadow .15s,background .15s}
+/* WHITEPAPER CTA — keep perfectly centered */
+.closing-cta-section{margin-top:10px;background:linear-gradient(180deg,#fff 0%,#f7f8ff 100%);border:1px solid #ecefff;border-radius:14px}
+.closing-cta-wrap{max-width:1050px;margin:0 auto;padding:18px;display:flex;align-items:center;justify-content:center;text-align:center}
+.closing-cta-wrap .btn{margin:0 auto;display:inline-block}
+.btn{padding:10px 16px;border-radius:10px;background:#eef3ff;color:#1a3db5;border:1px solid #cdd9ff;text-decoration:none;font-weight:600;transition:transform .15s,box-shadow .15s,background .15s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 20px rgba(26,61,181,.12);background:#e6eeff}
 .btn:link,.btn:visited{color:#1a3db5;text-decoration:none}
 
-/* Sources expander */
+/* Sources expander — SINGLE left caret, centered title */
 details.expander.card{padding:0}
 details.expander.card summary{display:flex;align-items:center;justify-content:center;gap:12px;position:relative;padding:14px 18px;margin:0;font-weight:700;font-size:1.05em;list-style:none;border:2px solid #2d68f0;border-left-width:0;border-right-width:0;background:#f7f7f7}
 details.expander.card summary::-webkit-details-marker{display:none}
@@ -85,31 +96,23 @@ details.expander.card[open] summary::before{transform:rotate(90deg)}
 details.expander.card .content{padding:0 18px 18px}
 .expander-note{color:#555;font-size:.95em;margin:6px 0 12px}
 
-/* Sources grid */
+/* Sources grid (desktop) */
 .sources-grid{display:flex;flex-wrap:wrap;gap:2.2em;justify-content:center;max-width:1600px;margin:0 auto}
 .sources-grid>div{flex:1 1 280px;max-width:320px}
+.sources-grid h3{margin:0 0 8px;text-align:center}
 .sources-grid ul{margin:0;padding-left:18px}
+.sources-grid li{margin:6px 0}
 
-/* Mobile fixes */
-@media (max-width:900px){.stat-grid{grid-template-columns:1fr}}
-@media (max-width:860px){.closing-text .closing-body.two-col{grid-template-columns:1fr}}
-@media (max-width:768px){.pros-cons-wrapper{flex-direction:column}}
-@media (max-width:600px){
+/* Mobile fixes for Sources (no weird gaps) */
+@media(max-width:600px){
   body{max-width:95%;font-size:14px;margin:10px auto 30px}
   .hero-img{width:100%}
-  /* FIX sources layout for mobile */
-  .sources-grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:16px;
-    max-width:100%;
-    justify-items:stretch;
-  }
-  .sources-grid>div{
-    width:100%;
-    max-width:none;
-  }
+  .sources-grid{display:grid;grid-template-columns:1fr;gap:16px;max-width:100%;justify-items:stretch}
+  .sources-grid>div{width:100%;max-width:none;margin:0}
 }
+
+/* Extra responsive tweaks */
+@media(max-width:900px){.stat-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -323,14 +326,30 @@ details.expander.card .content{padding:0 18px 18px}
 
 <section class="card closing-text">
   <h2 class="closing-title">Like many transformative innovations, BTC could either revolutionise finance or remain a speculative bubble akin to historic manias.</h2>
+
+  <div class="macro-intro">
+    <p>
+      <b>Macro backdrop:</b> Many observers argue that fiat currency systems are in a late-cycle phase marked by
+      rising debt loads, persistent deficits, financial repression, and faster debasement of purchasing power.
+      There is a visible shift back toward scarce, harder assets.
+    <p>  
+      This context doesn’t guarantee outcomes but it helps explain the growing interest in the fixed-issuance design and censorship-resistant settlement of BTC.
+    </p>
+  </div>
+
   <div class="pros-cons-wrapper">
     <div class="pros-box">
-      In either a fractured or a globalised world, abundant energy from nuclear breakthroughs and a successful BTC transition to quantum-resistant cryptography could converge to position it as the ultimate store of value for global wealth preservation.
+      In either a fractured or a globalised world, abundant energy from nuclear breakthroughs and a successful BTC
+      transition to quantum-resistant cryptography could converge to position it as the ultimate store of value
+      for global wealth preservation.
     </div>
     <div class="cons-box">
-      I personally remain unconvinced, particularly as the market is still in its infancy and the asset remains highly speculative. Nevertheless, the potential upside is so substantial that a hedge — using a DCA approach — seems sensible.
+      I personally remain unconvinced, particularly as the market is still in its infancy and the asset remains
+      highly speculative. Nevertheless, the potential upside is so substantial that a hedge — using a DCA approach —
+      seems sensible.
     </div>
   </div>
+
   <p class="muted center"><i>This is not investment advice. Please do your own research and consider both the risks and the potential of any asset.</i></p>
 </section>
 
