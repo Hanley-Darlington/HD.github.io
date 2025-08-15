@@ -170,26 +170,39 @@ details.expander.card .content{padding:0 18px 18px}
   overflow: hidden;    /* so stripes follow the rounded corners */
 }
 
-/* Striped border that sits OUTSIDE the content */
-.warning-tape{
-  /* how thick you want the tape */
-  --tape: 14px;
-
+/* Yellow/black warning ribbon around a block */
+.warning-tape {
   position: relative;
-  border: var(--tape) solid transparent;   /* transparent real border */
-  border-radius: 14px;                      /* match your .card radius */
-  padding: 20px;                            /* breathing room for text */
+  border-radius: 14px;
+  padding: 20px; /* breathing room between text and stripes */
+  background: var(--card);
+  box-sizing: border-box;
+}
 
-  /* two backgrounds:
-     1) inner card background (padding-box)
-     2) outer striped tape (border-box) */
-  background:
-    var(--card) padding-box,
-    repeating-linear-gradient(
-      45deg,
-      #ffd400 0 12px,
-      #111111 12px 24px
-    ) border-box;
+.warning-tape::before {
+  content: "";
+  position: absolute;
+  inset: -12px; /* how far outside the stripes go */
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    45deg,
+    #ffd400 0 12px,
+    #111 12px 24px
+  );
+  pointer-events: none;
+
+  /* hole smaller than border area so stripes show */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  padding: 20px; /* stripe thickness */
+  box-sizing: border-box;
 }
 
 </style>
