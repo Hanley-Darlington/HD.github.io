@@ -158,13 +158,22 @@ details.expander.card .content{padding:0 18px 18px}
   padding-left:18px;   /* keep bullet indent tidy */
 }
 
-.warning-tape {
-  background: #ffd400;      /* yellow */
-  border-radius: 14px;
-  padding: 22px;            /* matches the inside spacing */
-  margin: 0;                /* reset margin so it follows the same flow */
+/* Yellow box that aligns with normal card content */
+section#risk > .warning-tape{
+  background: #ffd400;          /* yellow */
+  border: 1px solid #e6cf00;    /* subtle outline like other boxes */
+  border-radius: 12px;
+  padding: 16px 18px;           /* same inner spacing as your other blocks */
+  margin: 12px 0;               /* same outer spacing as paragraphs/lists */
   box-sizing: border-box;
 }
+
+/* Make headings/lists inside the yellow box line up neatly */
+section#risk > .warning-tape h3{ margin: 0 0 8px; }
+section#risk > .warning-tape ul{ margin: 0 0 12px; padding-left: 20px; }
+
+/* (Optional) standardize all lists inside cards so indents match everywhere */
+.card ul{ padding-left: 20px; margin: 0 0 12px; }
 
 </style>
 </head>
