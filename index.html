@@ -173,42 +173,37 @@ details.expander.card .content{padding:0 18px 18px}
 /* Yellow/black warning ribbon around a block */
 .warning-tape{
   position: relative;
-}
-
-/* draws an outer striped ring */
-/* Container gets its own inner breathing room */
-.warning-tape{
-  position: relative;
-  border-radius: 14px;          /* match .card */
-  padding: 20px;                /* space between text and tape */
+  border-radius: 14px;         /* match .card */
+  padding: 20px;               /* breathing room */
   background: var(--card);
   box-sizing: border-box;
-  /* IMPORTANT: no overflow:hidden here */
 }
 
-/* Striped ring drawn outside, not over the content */
 .warning-tape::before{
   content:"";
   position:absolute;
-  inset:-14px;                  /* how far outside to draw */
-  border-radius: inherit;       /* follow the card corners */
+  inset:-14px;                 /* how far outside */
+  border-radius: inherit;
   background:repeating-linear-gradient(
     45deg,
     #ffd400 0 12px,
-    #111111 12px 24px
+    #111 12px 24px
   );
-  padding:14px;                 /* ring thickness */
-  box-sizing:border-box;
   pointer-events:none;
+  box-sizing:border-box;
 
-  /* Punch a hole so only the ring shows */
+  /* Standard syntax */
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  /* WebKit fallback (Safari) */
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
-  mask-composite: exclude;
 }
-
 
 </style>
 </head>
