@@ -170,6 +170,53 @@ details.expander.card .content{padding:0 18px 18px}
   overflow: hidden;    /* so stripes follow the rounded corners */
 }
 
+/* Outer wrapper draws the tape OUTSIDE the content */
+.tape-wrap{
+  position: relative;
+  isolation: isolate;              /* keeps z-index simple */
+  margin: 16px 0;                  /* optional spacing around the block */
+}
+
+/* Your normal content box (unchanged size) */
+.warning-box{
+  background: var(--card);
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  padding: 22px 24px;
+  position: relative;
+  z-index: 1;                      /* sits above the tape */
+}
+
+/* The striped tape lives OUTSIDE, not clipping the text */
+.tape-wrap::before{
+  content: "";
+  position: absolute;
+  top: -14px; left: -14px; right: -14px; bottom: -14px;  /* outside offset */
+  border-radius: 28px;             /* 14px (box radius) + 14px (tape) */
+  background: repeating-linear-gradient(
+    45deg,
+    #ffd400 0 12px,
+    #111111 12px 24px
+  );
+  z-index: 0;
+  padding: 14px;                   /* tape thickness */
+  box-sizing: border-box;
+
+  /* Punch a hole so only the ring shows */
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+}
+
+/* Optional: tidy spacing inside */
+.warning-box h3{ margin:16px 0 8px; }
+.warning-box ul{ margin:0 0 12px; padding-left:20px; }
+
 </style>
 </head>
 <body>
@@ -279,78 +326,79 @@ details.expander.card .content{padding:0 18px 18px}
     </a>
   </div>
 </section>
-
 <section class="card" id="risk">
   <h2>My risk assessment</h2>
 
-<div class="warning-tape">
-    <h3>Infrastructure Limitations</h3>
-    <ul>
-      <li><b>Scalability Limitations:</b> BTC’s transaction throughput is limited (~7 transactions ps), which may hinder mass adoption without effective l-2 solutions or protocol upgrades.  
-      <p> - However, the Lightning Network is showing meaningful progress. As of 2025 it supports over 5,500 BTC in public capacity, with thousands of active nodes and real-world usage.
-      </li>
-      <li><b>Layer-2 Dependency Risks:</b> Lightning and other layer-2 solutions rely on the base layer security, but also introduce new centralisation and liquidity risks (routing hubs or channel management). A failure in major Lightning hubs could harm confidence.</li>
-      <li><b>Energy Intensity:</b> POW consensus requires enormous energy consumption.</li>
-      <li><b>Centralisation of Mining Geography:</b> A large portion of BTC hash power is often concentrated in a few countries, making the network vulnerable to regional regulation, political instability, or coordinated crackdowns.</li>
-      <li><b>Technological Obsolescence:</b> Superior innovations like sharding which are more efficient could erode dominance.</li>
-      <li><b>Network Attack Vectors:</b> Risks such as 51% attacks, eclipse attacks, or vulnerabilities in wallet software remain possible, especially if mining power consolidates.</li>
-      <li><b>Economic Incentives:</b> As block rewards halve, revenue will increasingly depend on transaction fees, affecting network security and fee dynamics unpredictably.  
-      <p> - The Bank for International Settlements estimates that, to maintain current security without subsidies, average fees might need to exceed US$100 per transaction – an impractical level for most users.
-      </li>
-      <li><b>Strategic Accumulation:</b> Large actors, could amass BTC to exert market influence or destabilise confidence, though such control is costly and difficult.  
-      <p> - An NBER study found that the top 10,000 Bitcoin investors control roughly one-third of the total supply.
-      </li>
-      <li><b>Quantum Computing Threats:</b> SHA-256 mining is largely resistant to quantum speed-ups, but its ECDSA signatures could eventually be broken by a sufficiently advanced quantum computer, enabling theft from addresses with exposed public keys.  
-        The principal threat is not the technical upgrade itself, but achieving network-wide consensus in time.  
-        A hostile government or large player could attempt to delay or block consensus through miner control, exchange pressure, or disinformation.  
-        The highest-risk scenario is a covert quantum attack exploited before detection; in such circumstances, the vulnerable chain would be rapidly drained, forcing a chaotic migration to the secure chain.
-      </li>
-    </ul>
+  <!-- Tape lives on the OUTER wrapper; your words stay in the inner box -->
+  <div class="tape-wrap">
+    <div class="warning-box">
+      <h3>Infrastructure Limitations</h3>
+      <ul>
+        <li><b>Scalability Limitations:</b> BTC’s transaction throughput is limited (~7 transactions ps), which may hinder mass adoption without effective l-2 solutions or protocol upgrades.
+          <p> - However, the Lightning Network is showing meaningful progress. As of 2025 it supports over 5,500 BTC in public capacity, with thousands of active nodes and real-world usage.</p>
+        </li>
+        <li><b>Layer-2 Dependency Risks:</b> Lightning and other layer-2 solutions rely on the base layer security, but also introduce new centralisation and liquidity risks (routing hubs or channel management). A failure in major Lightning hubs could harm confidence.</li>
+        <li><b>Energy Intensity:</b> POW consensus requires enormous energy consumption.</li>
+        <li><b>Centralisation of Mining Geography:</b> A large portion of BTC hash power is often concentrated in a few countries, making the network vulnerable to regional regulation, political instability, or coordinated crackdowns.</li>
+        <li><b>Technological Obsolescence:</b> Superior innovations like sharding which are more efficient could erode dominance.</li>
+        <li><b>Network Attack Vectors:</b> Risks such as 51% attacks, eclipse attacks, or vulnerabilities in wallet software remain possible, especially if mining power consolidates.</li>
+        <li><b>Economic Incentives:</b> As block rewards halve, revenue will increasingly depend on transaction fees, affecting network security and fee dynamics unpredictably.
+          <p> - The Bank for International Settlements estimates that, to maintain current security without subsidies, average fees might need to exceed US$100 per transaction – an impractical level for most users.</p>
+        </li>
+        <li><b>Strategic Accumulation:</b> Large actors, could amass BTC to exert market influence or destabilise confidence, though such control is costly and difficult.
+          <p> - An NBER study found that the top 10,000 Bitcoin investors control roughly one-third of the total supply.</p>
+        </li>
+        <li><b>Quantum Computing Threats:</b> SHA-256 mining is largely resistant to quantum speed-ups, but its ECDSA signatures could eventually be broken by a sufficiently advanced quantum computer, enabling theft from addresses with exposed public keys. The principal threat is not the technical upgrade itself, but achieving network-wide consensus in time. A hostile government or large player could attempt to delay or block consensus through miner control, exchange pressure, or disinformation. The highest-risk scenario is a covert quantum attack exploited before detection; in such circumstances, the vulnerable chain would be rapidly drained, forcing a chaotic migration to the secure chain.</li>
+      </ul>
 
-    <h3>Value &amp; Adoption</h3>
-    <ul>
-      <li><b>Lack of Intrinsic Value:</b> Often cited as a weakness of BTC, since it is not tied to cash flow or industrial use. Supporters argue that the value lies in the network itself — its security, global reach, and censorship resistance.</li>
-      <li><b>Regulatory Uncertainty:</b> Governments might impose restrictive regulations or bans, threatening adoption and price stability. JMPC flags as a major concern.</li>
-      <li><b>Adoption Barriers:</b> Despite growing adoption, BTC still faces challenges around usability, custody, and education that may slow mainstream acceptance.</li>
-      <li><b>Liquidity Risks:</b> High price volatility can undermine BTC’s role as a stable store of value or medium of exchange in the short term.</li>
-      <li><b>On-chain Privacy Limitations:</b> The ledger is fully public, meaning transactions are permanently traceable. Chain analysis can deanonymise users, and privacy upgrades face political and technical resistance.</li>
-      <li><b>Custodial Risk:</b> Many BTC users rely on centralised exchanges or custodial wallets. These can be hacked, mismanaged, or seized by authorities, undermining the “self-sovereign” value proposition.</li>
-      <li><b>Artificially Enhanced Misinformation:</b> The proliferation of AI-generated content and deepfakes could exacerbate misinformation around BTC undermining public trust.</li>
-    </ul>
+      <h3>Value &amp; Adoption</h3>
+      <ul>
+        <li><b>Lack of Intrinsic Value:</b> Often cited as a weakness of BTC, since it is not tied to cash flow or industrial use. Supporters argue that the value lies in the network itself — its security, global reach, and censorship resistance.</li>
+        <li><b>Regulatory Uncertainty:</b> Governments might impose restrictive regulations or bans, threatening adoption and price stability. JMPC flags as a major concern.</li>
+        <li><b>Adoption Barriers:</b> Despite growing adoption, BTC still faces challenges around usability, custody, and education that may slow mainstream acceptance.</li>
+        <li><b>Liquidity Risks:</b> High price volatility can undermine BTC’s role as a stable store of value or medium of exchange in the short term.</li>
+        <li><b>On-chain Privacy Limitations:</b> The ledger is fully public, meaning transactions are permanently traceable. Chain analysis can deanonymise users, and privacy upgrades face political and technical resistance.</li>
+        <li><b>Custodial Risk:</b> Many BTC users rely on centralised exchanges or custodial wallets. These can be hacked, mismanaged, or seized by authorities, undermining the “self-sovereign” value proposition.</li>
+        <li><b>Artificially Enhanced Misinformation:</b> The proliferation of AI-generated content and deepfakes could exacerbate misinformation around BTC undermining public trust.</li>
+      </ul>
 
-    <h3>The Satoshi Nakamoto Enigma</h3>
-    <ul>
-      <li>The true identity of the BTC creator Satoshi Nakamoto remains unknown — a potential black swan risk. Blockchain analysis (the Patoshi pattern) suggests Satoshi may have mined around <b>4-5% of the total maximum supply</b> of BTC in its first year, though it remains unproven without movement or cryptographic signatures. If even a small portion of these coins, believed to be untouched were ever moved or sold, it could shake market confidence and have unpredictable consequences for the legitimacy of BTC, regulatory treatment, and public trust. As the architect of a tool designed to operate outside state monetary systems, anonymity fuels both mythology and lingering uncertainty about who could ultimately influence the narrative.</li>
-    </ul>
+      <h3>The Satoshi Nakamoto Enigma</h3>
+      <ul>
+        <li>The true identity of the BTC creator Satoshi Nakamoto remains unknown — a potential black swan risk. Blockchain analysis (the Patoshi pattern) suggests Satoshi may have mined around <b>4–5% of the total maximum supply</b> of BTC in its first year, though it remains unproven without movement or cryptographic signatures. If even a small portion of these coins, believed to be untouched were ever moved or sold, it could shake market confidence and have unpredictable consequences for the legitimacy of BTC, regulatory treatment, and public trust. As the architect of a tool designed to operate outside state monetary systems, anonymity fuels both mythology and lingering uncertainty about who could ultimately influence the narrative.</li>
+      </ul>
 
-    <h3>Tethergate</h3>
-    <ul>
-      <li>Some analysts warn that large issuances of the stablecoin Tether (USDT) may have artificially inflated the price of BTC during key market cycles. Although no full independent audit has ever been conducted, the settlement with the New York Attorney General confirmed that Tether had misrepresented its reserves—at one stage, it was only 74 % backed by fiat. This lends credence to concerns that part of BTC’s historic price growth may have been driven by unbacked capital flows, posing systemic risks if confidence in USDT were to falter.</li>
-    </ul>
+      <h3>Tethergate</h3>
+      <ul>
+        <li>Some analysts warn that large issuances of the stablecoin Tether (USDT) may have artificially inflated the price of BTC during key market cycles. Although no full independent audit has ever been conducted, the settlement with the New York Attorney General confirmed that Tether had misrepresented its reserves—at one stage, it was only 74% backed by fiat. This lends credence to concerns that part of BTC’s historic price growth may have been driven by unbacked capital flows, posing systemic risks if confidence in USDT were to falter.</li>
+      </ul>
 
-    <h3>Strategy</h3>
-    <ul>
-      <li>Strategy transformed itself from a conventional software company into one of the largest corporate holders of BTC, often using debt to increase its exposure. Analysts warn that this leveraged approach amplifies volatility for both shares and the wider BTC market, especially if falling prices force large-scale liquidations. Notably the firm has a past filled with controversies: during the dot-com bubble, their share price collapsed after an SEC investigation and a major accounting restatement. These factors have led some to view Strategy as a potential point of instability within the BTC ecosystem.</li>
-    </ul>
-  <h3>Belief Defiance</h3>
-  <ul>
-    <li>Many BTC supporters react defensively when its merits are questioned, often relying on slogans or mainstream talking points rather than evidence. This herd-like reinforcement makes reasoned debate difficult and can shut down critical analysis.</li>
-  </ul>
-</div> <!-- end warning-tape -->
+      <h3>Strategy</h3>
+      <ul>
+        <li>Strategy transformed itself from a conventional software company into one of the largest corporate holders of BTC, often using debt to increase its exposure. Analysts warn that this leveraged approach amplifies volatility for both shares and the wider BTC market, especially if falling prices force large-scale liquidations. Notably the firm has a past filled with controversies: during the dot-com bubble, their share price collapsed after an SEC investigation and a major accounting restatement. These factors have led some to view Strategy as a potential point of instability within the BTC ecosystem.</li>
+      </ul>
+
+      <h3>Belief Defiance</h3>
+      <ul>
+        <li>Many BTC supporters react defensively when its merits are questioned, often relying on slogans or mainstream talking points rather than evidence. This herd-like reinforcement makes reasoned debate difficult and can shut down critical analysis.</li>
+      </ul>
+    </div>
+  </div> <!-- /tape-wrap -->
+
   <h3>On the positive side</h3>
-    <ul>
-      <li><b>Absolute Digital Scarcity:</b> BTC has a fixed and transparent supply, unlike physical commodities that could be expanded through mining innovations, like eventual space mining.</li>
-      <li><b>Network Effects:</b> First-mover advantage, a large global user base, deep liquidity, and the most battle-tested blockchain security give BTC a resilience that is hard for competitors to match.</li>
-      <li><b>Store-of-Value Narrative:</b> Increasingly seen as a hedge against fiat inflation and geopolitical risks.</li>
-      <li><b>Libertarian Ideals:</b> Rooted in decentralisation and censorship resistance, it continues to attract ideological and financial support.</li>
-      <li><b>Portability of Wealth:</b> BTC can be stored in a hardware wallet, memorised as a seed phrase, or transmitted digitally — allowing large amounts of value to cross borders invisibly.</li>
-      <li><b>Immutability:</b> Once confirmed, transactions cannot be altered or reversed, providing a high level of settlement finality that is rare in the digital realm.</li>
-      <li><b>Born from Distrust:</b> Created in the wake of the financial crisis, Bitcoin was designed to operate without reliance on banks, governments, or any central authority — a principle underscored by the Genesis Block message referencing bank bailouts, signalling resistance to rule changes by powerful interests.</li>
-    </ul>
-    <p>
-      Some critics liken BTC to a decentralised Ponzi scheme, noting that early adopters have disproportionately benefited as new participants enter the market and drive demand. However, unlike a true Ponzi, BTC has no central operator, no guaranteed returns and operates in an open, transparent market. While its price is influenced by continual demand and speculative interest, it also offers real-world utility as a censorship-resistant, transferable digital asset with a fixed supply — factors that set it apart from fraudulent investment schemes.
-    </p>
+  <ul>
+    <li><b>Absolute Digital Scarcity:</b> BTC has a fixed and transparent supply, unlike physical commodities that could be expanded through mining innovations, like eventual space mining.</li>
+    <li><b>Network Effects:</b> First-mover advantage, a large global user base, deep liquidity, and the most battle-tested blockchain security give BTC a resilience that is hard for competitors to match.</li>
+    <li><b>Store-of-Value Narrative:</b> Increasingly seen as a hedge against fiat inflation and geopolitical risks.</li>
+    <li><b>Libertarian Ideals:</b> Rooted in decentralisation and censorship resistance, it continues to attract ideological and financial support.</li>
+    <li><b>Portability of Wealth:</b> BTC can be stored in a hardware wallet, memorised as a seed phrase, or transmitted digitally — allowing large amounts of value to cross borders invisibly.</li>
+    <li><b>Immutability:</b> Once confirmed, transactions cannot be altered or reversed, providing a high level of settlement finality that is rare in the digital realm.</li>
+    <li><b>Born from Distrust:</b> Created in the wake of the financial crisis, Bitcoin was designed to operate without reliance on banks, governments, or any central authority — a principle underscored by the Genesis Block message referencing bank bailouts, signalling resistance to rule changes by powerful interests.</li>
+  </ul>
+  <p>
+    Some critics liken BTC to a decentralised Ponzi scheme, noting that early adopters have disproportionately benefited as new participants enter the market and drive demand. However, unlike a true Ponzi, BTC has no central operator, no guaranteed returns and operates in an open, transparent market. While its price is influenced by continual demand and speculative interest, it also offers real-world utility as a censorship-resistant, transferable digital asset with a fixed supply — factors that set it apart from fraudulent investment schemes.
+  </p>
 </section>
+
 
 
 <section class="card">
