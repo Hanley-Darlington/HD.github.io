@@ -171,38 +171,38 @@ details.expander.card .content{padding:0 18px 18px}
 }
 
 /* Yellow/black warning ribbon around a block */
-.warning-tape{
+.warning-tape {
   position: relative;
-  border-radius: 14px;         /* match .card */
-  padding: 20px;               /* breathing room */
+  border-radius: 14px;
+  padding: 20px; /* breathing room between text and stripes */
   background: var(--card);
   box-sizing: border-box;
 }
 
-.warning-tape::before{
-  content:"";
-  position:absolute;
-  inset:-14px;                 /* how far outside */
+.warning-tape::before {
+  content: "";
+  position: absolute;
+  inset: -12px; /* how far outside the stripes go */
   border-radius: inherit;
-  background:repeating-linear-gradient(
+  background: repeating-linear-gradient(
     45deg,
     #ffd400 0 12px,
     #111 12px 24px
   );
-  pointer-events:none;
-  box-sizing:border-box;
+  pointer-events: none;
 
-  /* Standard syntax */
+  /* hole smaller than border area so stripes show */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
   mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
 
-  /* WebKit fallback (Safari) */
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
+  padding: 12px; /* stripe thickness */
+  box-sizing: border-box;
 }
 
 </style>
