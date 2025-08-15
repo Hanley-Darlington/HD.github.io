@@ -164,26 +164,33 @@ details.expander.card .content{padding:0 18px 18px}
 }
 
 /* draws an outer striped ring */
-.warning-tape::before{
-  content:"";
-  position:absolute;
-  inset:-10px;                 /* makes the ribbon sit just outside the block */
-  border-radius:18px;          /* matches your .card rounded look */
-  background:repeating-linear-gradient(
-    45deg,
-    #ffd400 0 12px,            /* yellow */
-    #111111 12px 24px          /* black */
-  );
-  padding:10px;                /* ribbon thickness */
-  box-sizing:border-box;
-  pointer-events:none;
+.warning-tape {
+  position: relative;
+  border-radius: 14px; /* match .card radius */
+  overflow: hidden;    /* so stripes follow the rounded corners */
+}
 
-  /* punch a hole so only the border shows */
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+/* Outer striped border effect */
+.warning-tape::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* cover entire element */
+  background: repeating-linear-gradient(
+    45deg,
+    #ffd400 0 12px,
+    #000     12px 24px
+  );
+  z-index: 1;
+}
+
+/* Inner content box */
+.warning-tape > * {
+  position: relative;
+  z-index: 2; /* keep text above stripes */
+  background: var(--card); /* same as card bg */
+  padding: 20px; /* space inside */
+  border-radius: 10px; /* slightly smaller so bg shows as border */
+  margin: 0;
 }
 
 </style>
