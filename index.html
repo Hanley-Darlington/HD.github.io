@@ -158,63 +158,12 @@ details.expander.card .content{padding:0 18px 18px}
   padding-left:18px;   /* keep bullet indent tidy */
 }
 
-
-/* Tape flush with the card edges */
-.tape-wrap{
-  --tape: 14px;   /* stripe thickness */
-  --r:    14px;   /* corner radius (match .card) */
-  position: relative;
-
-  /* pull to the .card's edges (your card has 24px side padding) */
-  margin: 16px -24px;
-  border-radius: var(--r);
+.warning-tape {
+  background: #ffd400;  /* bright yellow */
+  border-radius: 14px;
+  padding: 22px 24px;   /* matches your card spacing */
+  box-sizing: border-box;
 }
-
-/* draw the striped ring; never clips the text */
-.tape-wrap::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: var(--tape);
-
-  background: repeating-linear-gradient(
-    45deg,
-    #ffd400 0 12px,
-    #111    12px 24px
-  );
-
-  /* punch a hole so only the ring remains */
-  /* WebKit */
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-
-  /* Standard (Chromium/Firefox) */
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-
-  pointer-events: none;
-  z-index: 0; /* sit under the content box */
-}
-
-/* inner content area – keeps text aligned like the rest of the card */
-.warning-box{
-  position: relative;
-  z-index: 1;
-  background: var(--card);
-  border: 1px solid #ececec;
-  border-radius: var(--r);
-  padding: 22px 24px;  /* same indent as your .card */
-}
-
-/* optional tidy */
-.warning-box h3{ margin:16px 0 8px; }
-.warning-box ul{ margin:0 0 12px; padding-left:20px; }
-
 
 </style>
 </head>
