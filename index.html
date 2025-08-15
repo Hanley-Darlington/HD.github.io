@@ -171,18 +171,26 @@ details.expander.card .content{padding:0 18px 18px}
 }
 
 /* Yellow/black warning ribbon around a block */
-.warning-tape {
+.warning-tape{
   position: relative;
   border-radius: 14px;
-  padding: 20px; /* breathing room between text and stripes */
+  padding: 20px;                 /* space between text and tape */
   background: var(--card);
   box-sizing: border-box;
+
+  /* Layout: place <h3> left, next <ul> right */
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  column-gap: 18px;
+  row-gap: 10px;
+  align-items: start;
 }
 
-.warning-tape::before {
+/* Striped ring outside the box */
+.warning-tape::before{
   content: "";
   position: absolute;
-  inset: -12px; /* how far outside the stripes go */
+  inset: -12px;                  /* how far outside the ring sits */
   border-radius: inherit;
   background: repeating-linear-gradient(
     45deg,
@@ -191,18 +199,34 @@ details.expander.card .content{padding:0 18px 18px}
   );
   pointer-events: none;
 
-  /* hole smaller than border area so stripes show */
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
+  /* Show only the ring (mask out the middle) */
   mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
 
-  padding: 20px; /* stripe thickness */
+  padding: 12px;                 /* ring thickness */
   box-sizing: border-box;
+}
+
+/* Tidy the children inside the grid */
+.warning-tape h3{
+  margin: 6px 0;
+  white-space: nowrap;           /* keep heading on one line */
+}
+.warning-tape ul{
+  margin: 6px 0;
+  padding-left: 20px;            /* keep bullet indent */
+}
+
+/* Stack on narrow screens */
+@media (max-width: 900px){
+  .warning-tape{ grid-template-columns: 1fr; }
+  .warning-tape h3{ white-space: normal; }
 }
 
 </style>
