@@ -171,6 +171,7 @@ details.expander.card .content{padding:0 18px 18px}
 }
 
 /* Yellow/black warning ribbon around a block */
+/* Warning box: stripes + 2-column layout for all h3/ul pairs */
 .warning-tape{
   position: relative;
   border-radius: 14px;
@@ -178,52 +179,38 @@ details.expander.card .content{padding:0 18px 18px}
   background: var(--card);
   box-sizing: border-box;
 
-  /* Layout: place <h3> left, next <ul> right */
+  /* Layout: each <h3> left, its next <ul> right */
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 240px 1fr;  /* adjust 240→260 if you need more title width */
   column-gap: 18px;
-  row-gap: 10px;
+  row-gap: 14px;
   align-items: start;
 }
 
-/* Striped ring outside the box */
+/* Striped ring around (outside) */
 .warning-tape::before{
   content: "";
   position: absolute;
-  inset: -12px;                  /* how far outside the ring sits */
+  inset: -12px;                 
   border-radius: inherit;
-  background: repeating-linear-gradient(
-    45deg,
-    #ffd400 0 12px,
-    #111 12px 24px
-  );
+  background: repeating-linear-gradient(45deg,#ffd400 0 12px,#111 12px 24px);
   pointer-events: none;
 
-  /* Show only the ring (mask out the middle) */
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
+  /* keep only the ring */
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
 
-  padding: 12px;                 /* ring thickness */
+  padding: 12px;               /* ring thickness */
   box-sizing: border-box;
 }
 
-/* Tidy the children inside the grid */
-.warning-tape h3{
-  margin: 6px 0;
-  white-space: nowrap;           /* keep heading on one line */
-}
-.warning-tape ul{
-  margin: 6px 0;
-  padding-left: 20px;            /* keep bullet indent */
-}
+/* Neaten children */
+.warning-tape h3{ margin: 6px 0; white-space: nowrap; }
+.warning-tape ul{ margin: 6px 0; padding-left: 20px; }
 
-/* Stack on narrow screens */
+/* Responsive: stack on narrow screens */
 @media (max-width: 900px){
   .warning-tape{ grid-template-columns: 1fr; }
   .warning-tape h3{ white-space: normal; }
