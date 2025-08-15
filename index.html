@@ -159,9 +159,10 @@ details.expander.card .content{padding:0 18px 18px}
 }
 
 .warning-tape {
-  background: #ffd400;  /* bright yellow */
+  background: #ffd400;      /* yellow */
   border-radius: 14px;
-  padding: 22px 24px;   /* matches your card spacing */
+  padding: 22px;            /* matches the inside spacing */
+  margin: 0;                /* reset margin so it follows the same flow */
   box-sizing: border-box;
 }
 
@@ -276,7 +277,6 @@ details.expander.card .content{padding:0 18px 18px}
 </section>
 <section class="card" id="risk">
   <h2>My risk assessment</h2>
-
   <div class="warning-tape">
       <h3>Infrastructure Limitations</h3>
       <ul>
