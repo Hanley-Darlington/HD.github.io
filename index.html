@@ -157,63 +157,35 @@ details.expander.card .content{padding:0 18px 18px}
   gap:10px 18px;
   padding-left:18px;   /* keep bullet indent tidy */
 }
-.people-grid li{margin:2px 0}
-/* Yellow/black warning ribbon around a block */
-.warning-tape{
-  position: relative;
-}
 
-/* draws an outer striped ring */
-.warning-tape {
-  position: relative;
-  border-radius: 14px; /* match .card radius */
-  overflow: hidden;    /* so stripes follow the rounded corners */
-}
-
-/* Outer wrapper draws the tape OUTSIDE the content */
+/* Tape outside a content box */
 .tape-wrap{
+  /* tune these two to taste */
+  --tape: 14px;   /* thickness of the striped ring */
+  --r:    14px;   /* inner box radius (match your .card radius) */
+
   position: relative;
-  isolation: isolate;              /* keeps z-index simple */
-  margin: 16px 0;                  /* optional spacing around the block */
+
+  /* make the tape sit flush with the card edges */
+  /* .card has padding-left/right: 24px, so negate it here */
+  margin: 16px -24px;                 /* top/btm spacing; pull left/right to the edge */
+
+  border: var(--tape) solid transparent;      /* ring lives in the border */
+  border-radius: var(--r);                    /* match the card corners */
+  background:
+    #0000 padding-box,
+    repeating-linear-gradient(45deg, #ffd400 0 12px, #111 12px 24px) border-box;
 }
 
-/* Your normal content box (unchanged size) */
+/* Inner content box: controls the actual text padding/indent */
 .warning-box{
   background: var(--card);
   border: 1px solid #ececec;
-  border-radius: 14px;
-  padding: 22px 24px;
-  position: relative;
-  z-index: 1;                      /* sits above the tape */
+  border-radius: var(--r);
+  padding: 22px 24px;                 /* keeps the same indent as other text */
 }
 
-/* The striped tape lives OUTSIDE, not clipping the text */
-.tape-wrap::before{
-  content: "";
-  position: absolute;
-  top: -14px; left: -14px; right: -14px; bottom: -14px;  /* outside offset */
-  border-radius: 28px;             /* 14px (box radius) + 14px (tape) */
-  background: repeating-linear-gradient(
-    45deg,
-    #ffd400 0 12px,
-    #111111 12px 24px
-  );
-  z-index: 0;
-  padding: 14px;                   /* tape thickness */
-  box-sizing: border-box;
-
-  /* Punch a hole so only the ring shows */
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-}
-
-/* Optional: tidy spacing inside */
+/* Optional tidy */
 .warning-box h3{ margin:16px 0 8px; }
 .warning-box ul{ margin:0 0 12px; padding-left:20px; }
 
